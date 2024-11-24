@@ -3,52 +3,30 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class Eliminar_Usuario extends ImagenPanel {
+public class Eliminar_Usuario extends JPanel {
 
-    @SuppressWarnings("unused")
-    public Eliminar_Usuario() {
-        // ----->  Ruta de la imagen de fondo
-        super("src/img/fondo_Eliminar.jpg");
+    public Eliminar_Usuario(pagprincipal parentFrame) {
+        // Usar ImagenPanel como fondo
+        ImagenPanel fondo = new ImagenPanel("src/img/fondo_Eliminar.jpg");
+        fondo.setLayout(new GridBagLayout()); // Usar GridBagLayout para el diseño
 
-        // -----> Configuración del diseño
-        setLayout(new GridBagLayout());
-
-        //  -----> Crear componentes
+        // Crear componentes
         JLabel label = new JLabel("Ingrese ID de Usuario a eliminar:");
         JTextField txtIdUsuario = new JTextField(15);
         JButton btnEliminar = new JButton();
         JButton btnVolver = new JButton();
 
-        // ----->  Personalizar fuentes y tamaños
+        // Personalizar fuentes y tamaños
         Font fuenteGrande = new Font("Arial", Font.BOLD, 20);
         label.setFont(fuenteGrande);
-        label.setForeground(Color.WHITE); 
+        label.setForeground(Color.WHITE);
 
         txtIdUsuario.setFont(fuenteGrande);
 
-        //  -----> Eventos color de `JLabel`
-        label.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                label.setForeground(Color.GREEN);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                label.setForeground(Color.WHITE);
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                label.setForeground(Color.BLUE);
-            }
-        });
-
-        //  -----> íconos para los botones usando el método redimensionarIcono
+        // Configurar íconos para los botones
         btnEliminar.setIcon(redimensionarIcono("src/icons/Icono_Eliminar.png", 100, 100));
         btnVolver.setIcon(redimensionarIcono("src/icons/Icono_Volver.png", 100, 100));
 
-        // -----> tamaño de los botones y eliminar el fondo
         btnEliminar.setPreferredSize(new Dimension(100, 100));
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.setBorderPainted(false);
@@ -57,53 +35,58 @@ public class Eliminar_Usuario extends ImagenPanel {
         btnVolver.setContentAreaFilled(false);
         btnVolver.setBorderPainted(false);
 
-        //  -----> tooltips (mensajes informativos) a los botones
+        // Agregar tooltips
         btnEliminar.setToolTipText("Eliminar usuario");
         btnVolver.setToolTipText("Volver al menú principal");
 
-        //  -----> GridBagConstraints para centrar y espaciar componentes
+        // Configurar GridBagConstraints
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
 
-        //  -----> Agregar componentes
-        add(label, gbc);
+        fondo.add(label, gbc);
 
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        add(txtIdUsuario, gbc);
+        fondo.add(txtIdUsuario, gbc);
 
         gbc.gridy = 2;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
-        add(btnEliminar, gbc);
+        fondo.add(btnEliminar, gbc);
 
         gbc.gridx = 1;
-        add(btnVolver, gbc);
+        fondo.add(btnVolver, gbc);
 
-        //  -----> Acción al presionar el botón "Eliminar"
+        // Agregar el fondo al panel principal
+        setLayout(new BorderLayout());
+        add(fondo, BorderLayout.CENTER);
+
+        // Acción al presionar el botón "Eliminar"
         btnEliminar.addActionListener(e -> {
             String idUsuarioStr = txtIdUsuario.getText().trim();
             if (idUsuarioStr.isEmpty()) {
-                JOptionPane.showMessageDialog(Eliminar_Usuario.this, "Por favor ingrese un ID de usuario.");
+                JOptionPane.showMessageDialog(this, "Por favor ingrese un ID de usuario.");
                 return;
             }
             try {
                 int idUsuario = Integer.parseInt(idUsuarioStr);
                 eliminarUsuario(idUsuario);
+                txtIdUsuario.setText(""); // Limpiar el JTextField después de eliminar
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(Eliminar_Usuario.this, "El ID debe ser un número válido.");
+                JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
             }
         });
 
-        //  -----> Acción al presionar el botón "Volver"
+        // Acción al presionar el botón "Volver"
         btnVolver.addActionListener(e -> {
-            JFrame principalFrame = (JFrame) SwingUtilities.getWindowAncestor(Eliminar_Usuario.this);
-            principalFrame.setContentPane(((pagprincipal) principalFrame).getPanelBotones());
-            principalFrame.revalidate();
-            principalFrame.repaint();
+            parentFrame.getPanelBotones().setVisible(true); // Mostrar botones principales
+            parentFrame.panelContenido.removeAll(); // Limpiar el contenido
+            parentFrame.panelContenido.add(new ImagenPanel("src/img/fondoM.jpg")); // Restaurar el fondo del menú principal
+            parentFrame.revalidate();
+            parentFrame.repaint();
         });
     }
 
@@ -137,6 +120,4 @@ public class Eliminar_Usuario extends ImagenPanel {
         Image imagenRedimensionada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         return new ImageIcon(imagenRedimensionada);
     }
-
-   
 }

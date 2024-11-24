@@ -6,7 +6,6 @@ public class pagprincipal extends JFrame {
     private JPanel panelBotones; // Panel para los botones
     JPanel panelContenido; // Panel dinámico para cambiar contenido
 
-    @SuppressWarnings("unused")
     public pagprincipal() {
         super("Gestión de Usuarios");
         setSize(800, 530);
@@ -36,6 +35,7 @@ public class pagprincipal extends JFrame {
         JButton btnConsultarUsuarios = crearBoton("Mostrar Tabla Usuarios");
         JButton btnInsertarUsuario = crearBoton("Insertar Usuario");
         JButton btnConsultarPorId = crearBoton("Consultar Usuario por ID");
+        JButton btnEliminarUsuario = crearBoton("Eliminar Usuario"); // Botón para eliminar usuario
 
         // Agregar botones al panel de botones
         panelBotones.add(btnMantenimiento, gbc);
@@ -45,15 +45,18 @@ public class pagprincipal extends JFrame {
         panelBotones.add(btnInsertarUsuario, gbc);
         gbc.gridy++;
         panelBotones.add(btnConsultarPorId, gbc);
+        gbc.gridy++;
+        panelBotones.add(btnEliminarUsuario, gbc); 
 
         // Configuración de acciones para los botones
         btnMantenimiento.addActionListener(e -> mostrarPanelMantenimiento());
         btnConsultarUsuarios.addActionListener(e -> mostrarPanelConsultarUsuarios());
         btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
         btnConsultarPorId.addActionListener(e -> mostrarPanelConsultarPorId());
+        btnEliminarUsuario.addActionListener(e -> mostrarPanelEliminarUsuario()); // Acción del nuevo botón
 
         // Configuración de la ventana principal
-        panelBotones.setBounds(250, 100, 300, 300); // Colocar los botones en el centro de la ventana
+        panelBotones.setBounds(250, 100, 300, 350); // Ajustar altura para incluir el nuevo botón
         panelContenido.setBounds(0, 0, 800, 500); // El fondo cubre toda la ventana
 
         // Agregar el fondo y los botones al JLayeredPane
@@ -75,31 +78,20 @@ public class pagprincipal extends JFrame {
 
         // Borde redondeado utilizando un borde compuesto
         boton.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(66, 133, 244), 2), 
-            BorderFactory.createEmptyBorder(10, 10, 10, 10)
+                BorderFactory.createLineBorder(new Color(66, 133, 244), 2),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
 
-        // Efecto de sombra interna
-        boton.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(66, 133, 244), 2),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
-        ));
-        
         // Efecto al pasar el mouse sobre el botón
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 boton.setBackground(new Color(52, 103, 163)); // Color al pasar el mouse
                 boton.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 255), 3)); // Resplandor al pasar
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 boton.setBackground(new Color(66, 133, 244)); // Color original
                 boton.setBorder(BorderFactory.createLineBorder(new Color(66, 133, 244), 2)); // Regresar al borde original
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                boton.setPreferredSize(new Dimension(210, 55)); // Pulsación
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                boton.setPreferredSize(new Dimension(200, 50)); // Regresar al tamaño original después de pulsar
             }
         });
 
@@ -108,40 +100,43 @@ public class pagprincipal extends JFrame {
 
     // Métodos para cambiar el contenido dinámico del JFrame
     private void mostrarPanelMantenimiento() {
-        // Remover los componentes previos y agregar el contenido adecuado
         panelContenido.removeAll();
         panelContenido.add(new JLabel("Funcionalidad de Mantenimiento de Usuarios aún no implementada."), BorderLayout.CENTER);
-        panelBotones.setVisible(true);  // Asegurar que los botones sean visibles
         revalidate();
         repaint();
     }
 
     private void mostrarPanelConsultarUsuarios() {
-        // Remover los componentes previos y agregar solo el panel de consulta
-        panelBotones.setVisible(false);  // Ocultar los botones
+        panelBotones.setVisible(false);
         panelContenido.removeAll();
-        panelContenido.add(new ConsultarTodosPanel(this), BorderLayout.CENTER);  // Aquí va el panel de consulta
+        panelContenido.add(new ConsultarTodosPanel(this), BorderLayout.CENTER);
         revalidate();
         repaint();
     }
 
     private void mostrarPanelInsertarUsuario() {
-        // Remover los componentes previos y agregar el contenido adecuado
         panelContenido.removeAll();
         panelContenido.add(new JLabel("Funcionalidad de Insertar Usuario aún no implementada."), BorderLayout.CENTER);
-        panelBotones.setVisible(true);  // Asegurar que los botones sean visibles
         revalidate();
         repaint();
     }
 
     private void mostrarPanelConsultarPorId() {
-        // Remover los componentes previos y agregar el panel de consulta por ID
-        panelBotones.setVisible(false);  // Ocultar los botones
+        panelBotones.setVisible(false);
         panelContenido.removeAll();
-        panelContenido.add(new ConsultarPorIdPanel(), BorderLayout.CENTER);  // Agregar el panel ConsultarPorIdPanel
+        panelContenido.add(new ConsultarPorIdPanel(), BorderLayout.CENTER);
         revalidate();
         repaint();
     }
+
+    private void mostrarPanelEliminarUsuario() {
+        panelBotones.setVisible(false); 
+        panelContenido.removeAll(); 
+        panelContenido.add(new Eliminar_Usuario(this), BorderLayout.CENTER); 
+        revalidate(); 
+        repaint(); 
+    }
+    
 
     public JPanel getPanelBotones() {
         return panelBotones;
