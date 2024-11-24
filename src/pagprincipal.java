@@ -121,6 +121,7 @@ public class pagprincipal extends JFrame {
         InsertarUsuarioGUI nuevo = new InsertarUsuarioGUI();
         nuevo.setVisible(true);
         nuevo.setLocationRelativeTo(this);
+        this.dispose();
     }
 
     private void mostrarPanelConsultarPorId() {
@@ -153,5 +154,6 @@ public class pagprincipal extends JFrame {
 
     public static void main(String[] args) {
         new pagprincipal();
+        
     }
 }

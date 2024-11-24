@@ -207,6 +207,9 @@ public class InsertarUsuarioGUI extends JFrame {
     // Método para volver a la página principal
     private void volverAPrincipal() {
         this.dispose();  
+        pagprincipal y = new pagprincipal();
+        y.setVisible(true);
+        y.setLocationRelativeTo(null);
     }
 
     public static void main(String[] args) {
