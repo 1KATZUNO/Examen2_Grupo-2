@@ -30,3 +30,17 @@ public class ImagenPanel extends JPanel {
             }
         }
     } 
+
+    /**
+     * Sobrescribe el método paintComponent para dibujar la imagen de fondo.
+     * 
+     * @param g Objeto Graphics utilizado para dibujar en el panel.
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); // Llama al método de la clase padre para realizar el pintado predeterminado
+        if (imagen != null) { // Verifica que la imagen no sea nula antes de dibujarla
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+}
