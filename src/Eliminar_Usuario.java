@@ -6,24 +6,24 @@ import java.sql.*;
 public class Eliminar_Usuario extends JPanel {
 
     public Eliminar_Usuario(pagprincipal parentFrame) {
-        // Usar ImagenPanel como fondo
+        // ----> Usar ImagenPanel como fondo
         ImagenPanel fondo = new ImagenPanel("src/img/fondo_Eliminar.jpg");
         fondo.setLayout(new GridBagLayout()); // Usar GridBagLayout para el diseño
 
-        // Crear componentes
+        // ----> Crear componentes
         JLabel label = new JLabel("Ingrese ID de Usuario a eliminar:");
         JTextField txtIdUsuario = new JTextField(15);
         JButton btnEliminar = new JButton();
         JButton btnVolver = new JButton();
 
-        // Personalizar fuentes y tamaños
+        // ----> Personalizar fuentes y tamaños
         Font fuenteGrande = new Font("Arial", Font.BOLD, 20);
         label.setFont(fuenteGrande);
         label.setForeground(Color.WHITE);
 
         txtIdUsuario.setFont(fuenteGrande);
 
-        // Configurar íconos para los botones
+        //  ----> Configurar íconos para los botones
         btnEliminar.setIcon(redimensionarIcono("src/icons/Icono_Eliminar.png", 100, 100));
         btnVolver.setIcon(redimensionarIcono("src/icons/Icono_Volver.png", 100, 100));
 
@@ -35,11 +35,11 @@ public class Eliminar_Usuario extends JPanel {
         btnVolver.setContentAreaFilled(false);
         btnVolver.setBorderPainted(false);
 
-        // Agregar tooltips
+        // ---->  Agregar tooltips
         btnEliminar.setToolTipText("Eliminar usuario");
         btnVolver.setToolTipText("Volver al menú principal");
 
-        // Configurar GridBagConstraints
+        // ---->  Configurar GridBagConstraints
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.gridx = 0;
@@ -60,11 +60,11 @@ public class Eliminar_Usuario extends JPanel {
         gbc.gridx = 1;
         fondo.add(btnVolver, gbc);
 
-        // Agregar el fondo al panel principal
+        //  ----> Agregar el fondo al panel principal
         setLayout(new BorderLayout());
         add(fondo, BorderLayout.CENTER);
 
-        // Acción al presionar el botón "Eliminar"
+        //  ----> Acción al presionar el botón "Eliminar"
         btnEliminar.addActionListener(e -> {
             String idUsuarioStr = txtIdUsuario.getText().trim();
             if (idUsuarioStr.isEmpty()) {
@@ -80,7 +80,7 @@ public class Eliminar_Usuario extends JPanel {
             }
         });
 
-        // Acción al presionar el botón "Volver"
+        //  ----> Acción al presionar el botón "Volver"
         btnVolver.addActionListener(e -> {
             parentFrame.getPanelBotones().setVisible(true); // Mostrar botones principales
             parentFrame.panelContenido.removeAll(); // Limpiar el contenido
@@ -90,6 +90,7 @@ public class Eliminar_Usuario extends JPanel {
         });
     }
 
+    // ----> SP ELIMINAR USUARIO
     private void eliminarUsuario(int idUsuario) {
         Connection conn = null;
         CallableStatement cstmt = null;
@@ -115,6 +116,7 @@ public class Eliminar_Usuario extends JPanel {
         }
     }
 
+    // ----> REDIMENSIONAR ICONO
     private ImageIcon redimensionarIcono(String ruta, int ancho, int alto) {
         ImageIcon iconoOriginal = new ImageIcon(ruta);
         Image imagenRedimensionada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);

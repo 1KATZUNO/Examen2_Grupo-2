@@ -8,15 +8,14 @@ public class Actualizar_Usuario extends JPanel {
     private JTextField txtLoginActual, txtPasswordActual, txtFechaCreacionActual;
     private JTextField txtNombre1Nuevo, txtNombre2Nuevo, txtApellido1Nuevo, txtApellido2Nuevo;
     private JTextField txtLoginNuevo, txtPasswordNuevo, txtFechaCreacionNuevo;
-    private Image fondoImagen; // Variable para la imagen de fondo
+    private Image fondoImagen; 
 
     public Actualizar_Usuario(pagprincipal parentFrame) {
         setLayout(new GridBagLayout());
-        setOpaque(true);  // Asegúrate de que el panel sea opaco y pueda mostrar el fondo
+        setOpaque(true);  
 
         // Cargar la imagen de fondo
-        fondoImagen = new ImageIcon("src\\img\\fondo_Actualizar.jpg").getImage(); // Cambia la ruta por la correcta
- // Cambia la ruta por la correcta
+        fondoImagen = new ImageIcon("src\\img\\fondo_Actualizar.jpg").getImage(); 
 
         // Inicializar campos de texto
         txtId = new JTextField(15);
@@ -35,7 +34,7 @@ public class Actualizar_Usuario extends JPanel {
         txtPasswordNuevo = new JTextField(15);
         txtFechaCreacionNuevo = new JTextField(15);
 
-      // Crear etiquetas
+      //  etiquetas
 JLabel lblId = new JLabel("ID de Usuario:");
 JLabel lblNombre1Actual = new JLabel("Primer Nombre Actual:");
 JLabel lblNombre2Actual = new JLabel("Segundo Nombre Actual:");
@@ -53,7 +52,7 @@ JLabel lblPasswordNuevo = new JLabel("Nueva Contraseña:");
 JLabel lblFechaCreacionNuevo = new JLabel("Nueva Fecha de Creación:");
 
 // Cambiar el color de los JLabels
-Color colorTexto = Color.WHITE; // Elige el color que prefieras, por ejemplo, blanco
+Color colorTexto = Color.WHITE; 
 
 lblId.setForeground(colorTexto);
 lblNombre1Actual.setForeground(colorTexto);
@@ -71,12 +70,12 @@ lblLoginNuevo.setForeground(colorTexto);
 lblPasswordNuevo.setForeground(colorTexto);
 lblFechaCreacionNuevo.setForeground(colorTexto);
 
-        // Configurar botones
+        // ---->  COONFIGURACION DE LOS BOTONES 
         JButton btnConsultar = new JButton();
         JButton btnActualizar = new JButton();
         JButton btnVolver = new JButton();
 
-        // Cargar íconos para los botones
+        //  ----> Cargar íconos para los botones
         btnConsultar.setIcon(redimensionarIcono("src/icons/Icono_Consultar.png", 40, 40));
         btnConsultar.setToolTipText("Consultar usuario");
 
@@ -86,7 +85,7 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
         btnVolver.setIcon(redimensionarIcono("src/icons/Icono_Volver.png", 40, 40));
         btnVolver.setToolTipText("Volver al menú principal");
 
-        // Configurar diseño de los componentes
+        //  ----> configuración del diseño de los componentes
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
@@ -102,7 +101,7 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
         gbc.gridx = 2;
         add(btnConsultar, gbc);
 
-        // Agregar los campos actuales y nuevos en filas
+        //  ----> Agregar los campos actuales y nuevos en filas
         agregarCampo(lblNombre1Actual, txtNombre1Actual, lblNombre1Nuevo, txtNombre1Nuevo, 1, gbc);
         agregarCampo(lblNombre2Actual, txtNombre2Actual, lblNombre2Nuevo, txtNombre2Nuevo, 2, gbc);
         agregarCampo(lblApellido1Actual, txtApellido1Actual, lblApellido1Nuevo, txtApellido1Nuevo, 3, gbc);
@@ -111,18 +110,18 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
         agregarCampo(lblPasswordActual, txtPasswordActual, lblPasswordNuevo, txtPasswordNuevo, 6, gbc);
         agregarCampo(lblFechaCreacionActual, txtFechaCreacionActual, lblFechaCreacionNuevo, txtFechaCreacionNuevo, 7, gbc);
 
-        // Botón Actualizar
+        // ---->  Botón Actualizar
         gbc.gridy = 8;
         gbc.gridx = 2;
         gbc.anchor = GridBagConstraints.EAST;
         add(btnActualizar, gbc);
 
-        // Botón Volver
+        // ---->  Botón Volver
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         add(btnVolver, gbc);
 
-        // Acción para consultar
+        // ---->  Acción para consultar
         btnConsultar.addActionListener(e -> {
             try {
                 consultarUsuario(txtId.getText().trim(), txtNombre1Actual, txtNombre2Actual, txtApellido1Actual,
@@ -132,7 +131,7 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
             }
         });
 
-        // Acción para actualizar
+        //  ----> Acción para actualizar
         btnActualizar.addActionListener(e -> {
             try {
                 actualizarUsuario(txtId.getText().trim(), txtNombre1Nuevo.getText().trim(),
@@ -144,7 +143,7 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
             }
         });
 
-        // Acción para volver
+        //  ----> Acción para volver
         btnVolver.addActionListener(e -> {
             parentFrame.getPanelBotones().setVisible(true);
             parentFrame.panelContenido.removeAll();
@@ -164,6 +163,9 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
         gbc.gridx = 3;
         add(txtNuevo, gbc);
     }
+
+
+    // ---->  CONSULTAR USUARIO EXISTENTE SP
 
     private void consultarUsuario(String id, JTextField... campos) throws SQLException, ClassNotFoundException {
         Connection conn = null;
@@ -185,7 +187,8 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
                     campos[i].setText(valores[i]);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario no encontrado.");
+
+                JOptionPane.showMessageDialog(this, " El usuario no se ha encontrado.");
             }
         } finally {
             if (rs != null) rs.close();
@@ -194,6 +197,9 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
         }
     }
 
+
+
+//  ----> SP Actualizar usuario existente 
     private void actualizarUsuario(String id, String... valores) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         CallableStatement cstmt = null;
@@ -237,11 +243,12 @@ lblFechaCreacionNuevo.setForeground(colorTexto);
     }
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g); // Llama al método de la clase JPanel
-        if (fondoImagen != null) { // Verifica que la imagen no sea nula
+        super.paintComponent(g); 
+        if (fondoImagen != null) { 
             g.drawImage(fondoImagen, 0, 0, getWidth(), getHeight(), this); // Dibuja la imagen escalada para llenar el panel
         }
     }
+    // ----> Redimensionar icono
     private ImageIcon redimensionarIcono(String ruta, int ancho, int alto) {
         ImageIcon iconoOriginal = new ImageIcon(ruta);
         Image imagenRedimensionada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
