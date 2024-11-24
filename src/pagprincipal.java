@@ -1,89 +1,75 @@
-// Librerías necesarias
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class pagprincipal extends JFrame {
 
-    // Componentes de la interfaz gráfica
-    private JPanel mainPanel;
-    private JButton btnMantenimiento;
-    private JButton btnConsultarUsuarios; // Nuevo botón
-    private JLabel lbBienvenute;
+    private JPanel panelBotones; // Panel para los botones
+    private JPanel panelContenido; // Panel dinámico para cambiar contenido
 
-    // Constructor
     public pagprincipal() {
-        initComponents();
-    }
+        super("Gestión de Usuarios");
+        setSize(800, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    // Inicialización de componentes
-    private void initComponents() {
-        // Inicialización de los componentes
-        mainPanel = new JPanel();
-        btnMantenimiento = new JButton("Mantenimiento Usuarios");
-        btnConsultarUsuarios = new JButton("Consultar Usuarios"); // Nuevo botón
-        lbBienvenute = new JLabel("Bienvenido a Mantenimiento", SwingConstants.CENTER);
+        // Crear el panel dinámico que cambiará su contenido
+        panelContenido = new JPanel(new BorderLayout());
 
-        // Configuración de la etiqueta
-        lbBienvenute.setFont(new Font("Dialog", Font.BOLD, 14));
+        // Crear el panel para los botones
+        panelBotones = new JPanel(new FlowLayout());
+        JButton btnMantenimiento = new JButton("Mantenimiento Usuarios");
+        JButton btnConsultarUsuarios = new JButton("Consultar Usuarios");
+        JButton btnInsertarUsuario = new JButton("Insertar Usuario");
 
-        // Configuración del diseño del panel principal
-        mainPanel.setLayout(new BorderLayout(10, 10));
-        mainPanel.add(lbBienvenute, BorderLayout.NORTH);
-
-        // Panel de botones
-        JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(1, 2, 10, 10));
+        // Agregar botones al panel de botones
         panelBotones.add(btnMantenimiento);
         panelBotones.add(btnConsultarUsuarios);
+        panelBotones.add(btnInsertarUsuario);
 
-        mainPanel.add(panelBotones, BorderLayout.CENTER);
+        // Configuración de acciones para los botones
+        btnMantenimiento.addActionListener(e -> mostrarPanelMantenimiento());
+        btnConsultarUsuarios.addActionListener(e -> mostrarPanelConsultarUsuarios());
+        btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
 
-        // Configuración del marco (JFrame)
-        this.setTitle("Servidor GUI");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane(mainPanel);
-        this.setSize(400, 300);
-        this.setLocationRelativeTo(null); // Centrar la ventana en la pantalla
+        // Configuración de la ventana principal
+        setLayout(new BorderLayout());
+        add(panelBotones, BorderLayout.NORTH); // Panel de botones arriba
+        add(panelContenido, BorderLayout.CENTER); // Panel de contenido dinámico
 
-        // Acción del botón "Mantenimiento Usuarios"
-        btnMantenimiento.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                realizarMantenimiento();
-            }
-        });
-
-        // Acción del botón "Consultar Usuarios"
-        btnConsultarUsuarios.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirConsultarUsuarios();
-            }
-        });
+        setLocationRelativeTo(null); // Centrar ventana
+        setVisible(true);
     }
 
-    // Método para mostrar el panel ConsultarTodosPanel
-    private void abrirConsultarUsuarios() {
-        // Crear una instancia de ConsultarTodosPanel y cambiar el contenido
-        ConsultarTodosPanel panelConsultar = new ConsultarTodosPanel(this);
-        this.setContentPane(panelConsultar);
-        this.revalidate(); // Actualizar el JFrame
-        this.repaint();
+    // Métodos para cambiar el contenido dinámico del JFrame
+    private void mostrarPanelMantenimiento() {
+        // Remover los componentes previos y agregar el contenido adecuado
+        panelContenido.removeAll();
+        panelContenido.add(new JLabel("Funcionalidad de Mantenimiento de Usuarios aún no implementada."), BorderLayout.CENTER);
+        revalidate();
+        repaint();
     }
 
-    // Método principal para ejecutar la aplicación
+    private void mostrarPanelConsultarUsuarios() {
+        // Remover los componentes previos y agregar el panel correspondiente
+        panelContenido.removeAll();
+        panelContenido.add(new ConsultarTodosPanel(this), BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+
+    private void mostrarPanelInsertarUsuario() {
+        // Remover los componentes previos y agregar el contenido adecuado
+        panelContenido.removeAll();
+        panelContenido.add(new JLabel("Funcionalidad de Insertar Usuario aún no implementada."), BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+
+    public JPanel getPanelBotones() {
+        return panelBotones;
+    }
+
     public static void main(String[] args) {
-        // Crear y mostrar la GUI en el hilo de eventos de AWT
-        EventQueue.invokeLater(() -> {
-            new pagprincipal().setVisible(true);
-        });
-    }
-
-    // Realizar la acción de mantenimiento de usuarios
-    private void realizarMantenimiento() {
-        // Abrir una nueva ventana, mostrar un mensaje, etc.
-        JOptionPane.showMessageDialog(this, "Funcionalidad de Mantenimiento de Usuarios aún no implementada.");
+        new pagprincipal();
     }
 }

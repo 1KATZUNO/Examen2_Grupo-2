@@ -11,7 +11,7 @@ public class ConsultarTodosPanel extends ImagenPanel {
 
     public ConsultarTodosPanel(JFrame principalFrame) {
         // Ruta absoluta de tu imagen
-        super("demo/src/main/java/com/example/img/nature.jpg");
+        super("src/img/nature.jpg");
 
         // Establecer el Layout del panel
         setLayout(new BorderLayout());
