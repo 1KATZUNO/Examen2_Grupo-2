@@ -89,4 +89,80 @@ public class ConsultarTodosPanel extends ImagenPanel {
                     e1.printStackTrace();
                 }
             }
+        }); 
+        // Acción al presionar el botón "Volver"
+        btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpiarTabla();
+
+                principalFrame.setContentPane(((PrincipalFrame) principalFrame).getPanelBotones());
+                principalFrame.revalidate();
+                principalFrame.repaint();
+            }
         });
+    }
+
+    private void cargarTodosLosUsuarios() throws ClassNotFoundException {
+        Connection conn = null;
+        CallableStatement cstmt = null;
+        ResultSet rs = null;
+
+        try {
+            limpiarTabla();
+
+            conn = ConexionBaseDeDatos.obtenerConexion();
+            System.out.println("Conexión establecida: " + (conn != null));
+            cstmt = conn.prepareCall("{CALL ConsultarUsuariosTodos()}");
+
+            rs = cstmt.executeQuery();
+
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("ID");
+            model.addColumn("P_Nombre");
+            model.addColumn("S_Nombre");
+            model.addColumn("P_Apellido");
+            model.addColumn("S_Apellido");
+            model.addColumn("Login");
+            model.addColumn("Clave");
+            model.addColumn("Fecha_Creación");
+
+            tablaUsuarios.setModel(model);
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getInt("idUsuarios"),
+                    rs.getString("Primer_Nombre"),
+                    rs.getString("Segundo_Nombre"),
+                    rs.getString("Primer_Apellido"),
+                    rs.getString("Segundo_Apellido"),
+                    rs.getString("Login"),
+                    rs.getString("Clave"),
+                    rs.getString("Fecha_Creacion")
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error en la consulta: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (cstmt != null) cstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error al cerrar la conexión: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void limpiarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tablaUsuarios.getModel();
+        model.setRowCount(0);
+
+        for (int i = model.getColumnCount() - 1; i >= 0; i--) {
+            model.setColumnCount(0);
+        }
+    }
+}
+        
