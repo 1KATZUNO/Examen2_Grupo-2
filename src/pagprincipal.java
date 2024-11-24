@@ -20,16 +20,19 @@ public class pagprincipal extends JFrame {
         JButton btnMantenimiento = new JButton("Mantenimiento Usuarios");
         JButton btnConsultarUsuarios = new JButton("Mostrar Tabla Usuarios");
         JButton btnInsertarUsuario = new JButton("Insertar Usuario");
+        JButton btnConsultarPorId = new JButton("Consultar Usuario por ID");  // Nuevo botón para consultar por ID
 
         // Agregar botones al panel de botones
         panelBotones.add(btnMantenimiento);
         panelBotones.add(btnConsultarUsuarios);
         panelBotones.add(btnInsertarUsuario);
+        panelBotones.add(btnConsultarPorId);  // Agregar el nuevo botón al panel
 
         // Configuración de acciones para los botones
         btnMantenimiento.addActionListener(e -> mostrarPanelMantenimiento());
         btnConsultarUsuarios.addActionListener(e -> mostrarPanelConsultarUsuarios());
         btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
+        btnConsultarPorId.addActionListener(e -> mostrarPanelConsultarPorId());  // Acción para el nuevo botón
 
         // Configuración de la ventana principal
         setLayout(new BorderLayout());
@@ -62,6 +65,15 @@ public class pagprincipal extends JFrame {
         // Remover los componentes previos y agregar el contenido adecuado
         panelContenido.removeAll();
         panelContenido.add(new JLabel("Funcionalidad de Insertar Usuario aún no implementada."), BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+
+    private void mostrarPanelConsultarPorId() {
+        // Remover los componentes previos y agregar el panel de consulta por ID
+        panelBotones.setVisible(false);  // Ocultar los botones
+        panelContenido.removeAll();
+        panelContenido.add(new ConsultarPorIdPanel(), BorderLayout.CENTER);  // Agregar el panel ConsultarPorIdPanel
         revalidate();
         repaint();
     }
