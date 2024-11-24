@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultarPorIdPanel extends ImagenPanel {
 
     public ConsultarPorIdPanel() {
-        // Ruta absoluta de tu imagen de fondo
+        // Ruta absoluta de  imagen de fondo
         super("src/img/nature2.jpg");
 
         // Establecer el Layout

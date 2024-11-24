@@ -10,7 +10,7 @@ public class ConsultarTodosPanel extends ImagenPanel {
     private JTable tablaUsuarios;
 
     public ConsultarTodosPanel(JFrame principalFrame) {
-        // Ruta absoluta de tu imagen
+        // Ruta relativa de imagen
         super("src/img/nature.jpg");
 
         // Establecer el Layout del panel
