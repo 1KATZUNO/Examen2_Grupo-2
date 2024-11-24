@@ -46,8 +46,8 @@ public class ConsultarTodosPanel extends ImagenPanel {
         panelTabla.add(scrollPane, BorderLayout.CENTER);
 
         // Cargar íconos y redimensionarlos
-        ImageIcon iconMostrarOriginal = new ImageIcon("demo/src/main/java/com/example/icons/mostrar.png");
-        ImageIcon iconVolverOriginal = new ImageIcon("demo/src/main/java/com/example/icons/back.png");
+        ImageIcon iconMostrarOriginal = new ImageIcon("src/icons/mostrar.png");
+        ImageIcon iconVolverOriginal = new ImageIcon("src/icons/back.png");
 
         // Escalar imágenes a un tamaño adecuado (20x20 píxeles)
         Image iconMostrarEscalado = iconMostrarOriginal.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
