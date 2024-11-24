@@ -84,7 +84,7 @@ public class Eliminar_Usuario extends JPanel {
         btnVolver.addActionListener(e -> {
             parentFrame.getPanelBotones().setVisible(true); // Mostrar botones principales
             parentFrame.panelContenido.removeAll(); // Limpiar el contenido
-            parentFrame.panelContenido.add(new ImagenPanel("src/img/fondoM.jpg")); // Restaurar el fondo del menú principal
+            parentFrame.panelContenido.add(new ImagenPanel("src/img/land.jpg")); // Restaurar el fondo del menú principal
             parentFrame.revalidate();
             parentFrame.repaint();
         });
