@@ -1,5 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class pagprincipal extends JFrame {
 
@@ -52,6 +52,7 @@ public class pagprincipal extends JFrame {
         panelBotones.add(btnActualizarUsuario, gbc);
 
         // Configuración de acciones para los botones
+        
         btnMantenimiento.addActionListener(e -> mostrarPanelMantenimiento());
         btnConsultarUsuarios.addActionListener(e -> mostrarPanelConsultarUsuarios());
         btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
@@ -115,10 +116,11 @@ public class pagprincipal extends JFrame {
     }
 
     private void mostrarPanelInsertarUsuario() {
-        panelContenido.removeAll();
-        panelContenido.add(new JLabel("Funcionalidad de Insertar Usuario aún no implementada."), BorderLayout.CENTER);
-        revalidate();
-        repaint();
+        
+    
+        InsertarUsuarioGUI nuevo = new InsertarUsuarioGUI();
+        nuevo.setVisible(true);
+        nuevo.setLocationRelativeTo(this);
     }
 
     private void mostrarPanelConsultarPorId() {
