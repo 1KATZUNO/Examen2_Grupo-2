@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 public class pagprincipal extends JFrame {
 
     private JPanel panelBotones; // Panel para los botones
-    private JPanel panelContenido; // Panel dinámico para cambiar contenido
+    JPanel panelContenido; // Panel dinámico para cambiar contenido
 
     public pagprincipal() {
         super("Gestión de Usuarios");
@@ -50,9 +50,10 @@ public class pagprincipal extends JFrame {
     }
 
     private void mostrarPanelConsultarUsuarios() {
-        // Remover los componentes previos y agregar el panel correspondiente
+        // Remover los componentes previos y agregar solo el panel de consulta
+        panelBotones.setVisible(false);  // Ocultar los botones
         panelContenido.removeAll();
-        panelContenido.add(new ConsultarTodosPanel(this), BorderLayout.CENTER);
+        panelContenido.add(new ConsultarTodosPanel(this), BorderLayout.CENTER);  // Aquí va el panel de consulta
         revalidate();
         repaint();
     }

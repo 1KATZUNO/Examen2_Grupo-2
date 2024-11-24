@@ -91,22 +91,29 @@ public class ConsultarTodosPanel extends ImagenPanel {
             }
         }); 
         // Acción al presionar el botón "Volver"
-        btnVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                limpiarTabla();
-        
-                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ConsultarTodosPanel.this);
-                if (frame instanceof pagprincipal) {
-                    pagprincipal pagPrincipalFrame = (pagprincipal) frame;
-                    pagPrincipalFrame.setContentPane(pagPrincipalFrame.getContentPane());
-                    pagPrincipalFrame.revalidate();
-                    pagPrincipalFrame.repaint();
-                } else {
-                    JOptionPane.showMessageDialog(ConsultarTodosPanel.this, "Error al volver al panel principal.");
-                }
-            }
-        });
+     // Acción al presionar el botón "Volver"
+btnVolver.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Limpiar la tabla antes de volver
+        limpiarTabla();
+
+        // Volver a la ventana principal
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ConsultarTodosPanel.this);
+        if (frame instanceof pagprincipal) {
+            pagprincipal pagPrincipalFrame = (pagprincipal) frame;
+
+            // Eliminar el panel de consulta y mostrar el panel principal (con los botones)
+            pagPrincipalFrame.getPanelBotones().setVisible(true);  // Hacer visibles los botones de nuevo
+            pagPrincipalFrame.panelContenido.removeAll(); // Eliminar cualquier panel que esté cargado
+            pagPrincipalFrame.revalidate();
+            pagPrincipalFrame.repaint();
+        } else {
+            JOptionPane.showMessageDialog(ConsultarTodosPanel.this, "Error al volver al panel principal.");
+        }
+    }
+});
+
         
     }
 
