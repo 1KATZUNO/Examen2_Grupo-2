@@ -1,7 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.sql.*;
+import javax.swing.*;
 
 public class Eliminar_Usuario extends JPanel {
 
