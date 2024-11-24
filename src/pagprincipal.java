@@ -35,7 +35,8 @@ public class pagprincipal extends JFrame {
         JButton btnConsultarUsuarios = crearBoton("Mostrar Tabla Usuarios");
         JButton btnInsertarUsuario = crearBoton("Insertar Usuario");
         JButton btnConsultarPorId = crearBoton("Consultar Usuario por ID");
-        JButton btnEliminarUsuario = crearBoton("Eliminar Usuario"); // Botón para eliminar usuario
+        JButton btnEliminarUsuario = crearBoton("Eliminar Usuario");
+        JButton btnActualizarUsuario = crearBoton("Actualizar Usuario"); // Nuevo botón para Actualizar Usuario
 
         // Agregar botones al panel de botones
         panelBotones.add(btnMantenimiento, gbc);
@@ -46,17 +47,20 @@ public class pagprincipal extends JFrame {
         gbc.gridy++;
         panelBotones.add(btnConsultarPorId, gbc);
         gbc.gridy++;
-        panelBotones.add(btnEliminarUsuario, gbc); 
+        panelBotones.add(btnEliminarUsuario, gbc);
+        gbc.gridy++;
+        panelBotones.add(btnActualizarUsuario, gbc); // Agregar el nuevo botón
 
         // Configuración de acciones para los botones
         btnMantenimiento.addActionListener(e -> mostrarPanelMantenimiento());
         btnConsultarUsuarios.addActionListener(e -> mostrarPanelConsultarUsuarios());
         btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
         btnConsultarPorId.addActionListener(e -> mostrarPanelConsultarPorId());
-        btnEliminarUsuario.addActionListener(e -> mostrarPanelEliminarUsuario()); // Acción del nuevo botón
+        btnEliminarUsuario.addActionListener(e -> mostrarPanelEliminarUsuario());
+        btnActualizarUsuario.addActionListener(e -> mostrarPanelActualizarUsuario()); // Acción del nuevo botón
 
         // Configuración de la ventana principal
-        panelBotones.setBounds(250, 100, 300, 350); // Ajustar altura para incluir el nuevo botón
+        panelBotones.setBounds(250, 100, 300, 400); // Ajustar altura para incluir el nuevo botón
         panelContenido.setBounds(0, 0, 800, 500); // El fondo cubre toda la ventana
 
         // Agregar el fondo y los botones al JLayeredPane
@@ -136,7 +140,14 @@ public class pagprincipal extends JFrame {
         revalidate(); 
         repaint(); 
     }
-    
+
+    private void mostrarPanelActualizarUsuario() {
+        panelBotones.setVisible(false);
+        panelContenido.removeAll();
+        panelContenido.add(new Actualizar_Usuario(this), BorderLayout.CENTER); // Llamar a la clase Actualizar_Usuario
+        revalidate();
+        repaint();
+    }
 
     public JPanel getPanelBotones() {
         return panelBotones;
