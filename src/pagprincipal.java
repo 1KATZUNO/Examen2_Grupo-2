@@ -18,7 +18,7 @@ public class pagprincipal extends JFrame {
         // Crear el panel para los botones
         panelBotones = new JPanel(new FlowLayout());
         JButton btnMantenimiento = new JButton("Mantenimiento Usuarios");
-        JButton btnConsultarUsuarios = new JButton("Consultar Usuarios");
+        JButton btnConsultarUsuarios = new JButton("Mostrar Tabla Usuarios");
         JButton btnInsertarUsuario = new JButton("Insertar Usuario");
 
         // Agregar botones al panel de botones
