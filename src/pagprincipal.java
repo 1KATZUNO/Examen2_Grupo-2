@@ -16,7 +16,7 @@ public class pagprincipal extends JFrame {
         setContentPane(layeredPane); // Establecemos el contenido del JFrame como JLayeredPane
 
         // Crear el panel dinámico con fondo
-        panelContenido = new ImagenPanel("src/img/fondoM.jpg"); // Imagen de fondo
+        panelContenido = new ImagenPanel("src/img/land.jpg"); // Imagen de fondo
         panelContenido.setBounds(0, 0, 800, 500); // Hacer que el panel de fondo cubra toda la ventana
         panelContenido.setLayout(new BorderLayout());
 
