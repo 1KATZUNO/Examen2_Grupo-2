@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class pagprincipal extends JFrame {
 
     private JPanel panelBotones; // Panel para los botones
     JPanel panelContenido; // Panel dinámico para cambiar contenido
 
+    @SuppressWarnings("unused")
     public pagprincipal() {
         super("Gestión de Usuarios");
         setSize(800, 530);
