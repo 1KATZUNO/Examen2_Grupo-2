@@ -1,11 +1,14 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.border.Border;
 
 public class pagprincipal extends JFrame {
 
     private JPanel panelBotones; // Panel para los botones
     JPanel panelContenido; // Panel dinámico para cambiar contenido
 
+    @SuppressWarnings("unused")
     public pagprincipal() {
         super("Gestión de Usuarios");
         setSize(800, 530);
@@ -29,20 +32,18 @@ public class pagprincipal extends JFrame {
         gbc.gridx = 0; // Columna
         gbc.gridy = 0; // Fila
         gbc.insets = new Insets(10, 10, 10, 10); // Espaciado entre botones
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Asegurarse de que los botones se estiren horizontalmente
 
-        // Crear los botones con efectos simplificados
-        JButton btnMantenimiento = crearBoton("Mantenimiento Usuarios");
-        JButton btnConsultarUsuarios = crearBoton("Mostrar Tabla Usuarios");
-        JButton btnInsertarUsuario = crearBoton("Insertar Usuario");
-        JButton btnConsultarPorId = crearBoton("Consultar Usuario por ID");
-        JButton btnEliminarUsuario = crearBoton("Eliminar Usuario");
-        JButton btnActualizarUsuario = crearBoton("Actualizar Usuario");
+        // Crear los botones con efectos y iconos
+        JButton btnConsultarUsuarios = crearBoton("Mostrar Tabla Usuarios", "src/icons/consultar.png");
+        JButton btnInsertarUsuario = crearBoton("Insertar Usuario", "src/icons/insertar.png");
+        JButton btnConsultarPorId = crearBoton("Consultar Usuario ID", "src/icons/consultar_id.png");
+        JButton btnEliminarUsuario = crearBoton("Eliminar Usuario", "src/icons/eliminar_id.png");
+        JButton btnActualizarUsuario = crearBoton("Actualizar Usuario", "src/icons/actualizar_bd.jpg");
 
         // Agregar botones al panel de botones
-        panelBotones.add(btnMantenimiento, gbc);
-        gbc.gridy++; // Mover a la siguiente fila
         panelBotones.add(btnConsultarUsuarios, gbc);
-        gbc.gridy++;
+        gbc.gridy++; // Mover a la siguiente fila
         panelBotones.add(btnInsertarUsuario, gbc);
         gbc.gridy++;
         panelBotones.add(btnConsultarPorId, gbc);
@@ -52,8 +53,6 @@ public class pagprincipal extends JFrame {
         panelBotones.add(btnActualizarUsuario, gbc);
 
         // Configuración de acciones para los botones
-        
-        btnMantenimiento.addActionListener(e -> mostrarPanelMantenimiento());
         btnConsultarUsuarios.addActionListener(e -> mostrarPanelConsultarUsuarios());
         btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
         btnConsultarPorId.addActionListener(e -> mostrarPanelConsultarPorId());
@@ -72,27 +71,35 @@ public class pagprincipal extends JFrame {
         setVisible(true);
     }
 
-    // Método para crear botones personalizados con sombra al pasar el mouse
-    private JButton crearBoton(String texto) {
+    // Método para crear botones personalizados con iconos, efectos de cambio de color y bordes
+    private JButton crearBoton(String texto, String iconPath) {
         JButton boton = new JButton(texto);
         boton.setPreferredSize(new Dimension(200, 50)); // Tamaño del botón
         boton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente personalizada
         boton.setBackground(new Color(66, 133, 244)); // Color de fondo del botón
         boton.setForeground(Color.WHITE); // Color del texto
         boton.setFocusPainted(false); // Quitar el borde cuando se da click
-        boton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        boton.setBorder(BorderFactory.createLineBorder(new Color(40, 120, 200), 2)); // Borde con color
 
-        // Agregar sombra al pasar el mouse
+        // Cargar el icono
+        if (iconPath != null) {
+            ImageIcon icon = new ImageIcon(iconPath);
+            Image img = icon.getImage(); // Convertir a imagen
+            Image newImg = img.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Redimensionar el icono
+            icon = new ImageIcon(newImg);
+            boton.setIcon(icon); // Establecer el icono
+            boton.setHorizontalTextPosition(SwingConstants.RIGHT); // Texto a la derecha del icono
+            boton.setVerticalTextPosition(SwingConstants.CENTER); // Alinear el texto en el centro verticalmente
+        }
+
+        // Agregar el efecto de cambio de color al pasar el mouse
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                boton.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(new Color(50, 50, 50), 2),
-                        BorderFactory.createEmptyBorder(10, 10, 10, 10)
-                ));
+                boton.setBackground(new Color(40, 120, 200)); // Cambiar color al pasar el mouse
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                boton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                boton.setBackground(new Color(66, 133, 244)); // Restaurar color original cuando se salga el mouse
             }
         });
 
@@ -100,13 +107,6 @@ public class pagprincipal extends JFrame {
     }
 
     // Métodos para cambiar el contenido dinámico del JFrame
-    private void mostrarPanelMantenimiento() {
-        panelContenido.removeAll();
-        panelContenido.add(new JLabel("Funcionalidad de Mantenimiento de Usuarios aún no implementada."), BorderLayout.CENTER);
-        revalidate();
-        repaint();
-    }
-
     private void mostrarPanelConsultarUsuarios() {
         panelBotones.setVisible(false);
         panelContenido.removeAll();
@@ -116,8 +116,6 @@ public class pagprincipal extends JFrame {
     }
 
     private void mostrarPanelInsertarUsuario() {
-        
-    
         InsertarUsuarioGUI nuevo = new InsertarUsuarioGUI();
         nuevo.setVisible(true);
         nuevo.setLocationRelativeTo(this);
@@ -154,6 +152,5 @@ public class pagprincipal extends JFrame {
 
     public static void main(String[] args) {
         new pagprincipal();
-        
     }
 }
