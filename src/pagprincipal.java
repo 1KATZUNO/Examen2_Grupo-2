@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.border.Border;
+//import java.awt.event.*;
+//import javax.swing.border.Border;
 
 public class pagprincipal extends JFrame {
 
