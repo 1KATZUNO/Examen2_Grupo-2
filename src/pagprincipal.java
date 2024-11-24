@@ -59,8 +59,7 @@ public class pagprincipal extends JFrame {
 
     //realizar la acción de mantenimiento de usuarios
     private void realizarMantenimiento() {
-      
-        // abrir una nueva ventana, mostrar un mensaje, etc.
+        // Abrir una nueva ventana, mostrar un mensaje, etc.
         JOptionPane.showMessageDialog(this, "Funcionalidad de Mantenimiento de Usuarios aún no implementada.");
     }
 
