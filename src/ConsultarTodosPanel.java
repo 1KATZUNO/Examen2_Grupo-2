@@ -95,12 +95,19 @@ public class ConsultarTodosPanel extends ImagenPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiarTabla();
-
-                principalFrame.setContentPane(((PrincipalFrame) principalFrame).getPanelBotones());
-                principalFrame.revalidate();
-                principalFrame.repaint();
+        
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ConsultarTodosPanel.this);
+                if (frame instanceof pagprincipal) {
+                    pagprincipal pagPrincipalFrame = (pagprincipal) frame;
+                    pagPrincipalFrame.setContentPane(pagPrincipalFrame.getContentPane());
+                    pagPrincipalFrame.revalidate();
+                    pagPrincipalFrame.repaint();
+                } else {
+                    JOptionPane.showMessageDialog(ConsultarTodosPanel.this, "Error al volver al panel principal.");
+                }
             }
         });
+        
     }
 
     private void cargarTodosLosUsuarios() throws ClassNotFoundException {
