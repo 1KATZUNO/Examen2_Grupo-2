@@ -30,13 +30,13 @@ public class pagprincipal extends JFrame {
         gbc.gridy = 0; // Fila
         gbc.insets = new Insets(10, 10, 10, 10); // Espaciado entre botones
 
-        // Crear los botones con colores, bordes redondeados y efectos
+        // Crear los botones con efectos simplificados
         JButton btnMantenimiento = crearBoton("Mantenimiento Usuarios");
         JButton btnConsultarUsuarios = crearBoton("Mostrar Tabla Usuarios");
         JButton btnInsertarUsuario = crearBoton("Insertar Usuario");
         JButton btnConsultarPorId = crearBoton("Consultar Usuario por ID");
         JButton btnEliminarUsuario = crearBoton("Eliminar Usuario");
-        JButton btnActualizarUsuario = crearBoton("Actualizar Usuario"); // Nuevo botón para Actualizar Usuario
+        JButton btnActualizarUsuario = crearBoton("Actualizar Usuario");
 
         // Agregar botones al panel de botones
         panelBotones.add(btnMantenimiento, gbc);
@@ -49,7 +49,7 @@ public class pagprincipal extends JFrame {
         gbc.gridy++;
         panelBotones.add(btnEliminarUsuario, gbc);
         gbc.gridy++;
-        panelBotones.add(btnActualizarUsuario, gbc); // Agregar el nuevo botón
+        panelBotones.add(btnActualizarUsuario, gbc);
 
         // Configuración de acciones para los botones
         btnMantenimiento.addActionListener(e -> mostrarPanelMantenimiento());
@@ -57,7 +57,7 @@ public class pagprincipal extends JFrame {
         btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
         btnConsultarPorId.addActionListener(e -> mostrarPanelConsultarPorId());
         btnEliminarUsuario.addActionListener(e -> mostrarPanelEliminarUsuario());
-        btnActualizarUsuario.addActionListener(e -> mostrarPanelActualizarUsuario()); // Acción del nuevo botón
+        btnActualizarUsuario.addActionListener(e -> mostrarPanelActualizarUsuario());
 
         // Configuración de la ventana principal
         panelBotones.setBounds(250, 100, 300, 400); // Ajustar altura para incluir el nuevo botón
@@ -71,7 +71,7 @@ public class pagprincipal extends JFrame {
         setVisible(true);
     }
 
-    // Método para crear botones personalizados con bordes redondeados y efectos
+    // Método para crear botones personalizados con sombra al pasar el mouse
     private JButton crearBoton(String texto) {
         JButton boton = new JButton(texto);
         boton.setPreferredSize(new Dimension(200, 50)); // Tamaño del botón
@@ -79,23 +79,19 @@ public class pagprincipal extends JFrame {
         boton.setBackground(new Color(66, 133, 244)); // Color de fondo del botón
         boton.setForeground(Color.WHITE); // Color del texto
         boton.setFocusPainted(false); // Quitar el borde cuando se da click
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Borde redondeado utilizando un borde compuesto
-        boton.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(66, 133, 244), 2),
-                BorderFactory.createEmptyBorder(10, 10, 10, 10)
-        ));
-
-        // Efecto al pasar el mouse sobre el botón
+        // Agregar sombra al pasar el mouse
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                boton.setBackground(new Color(52, 103, 163)); // Color al pasar el mouse
-                boton.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 255), 3)); // Resplandor al pasar
+                boton.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(new Color(50, 50, 50), 2),
+                        BorderFactory.createEmptyBorder(10, 10, 10, 10)
+                ));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                boton.setBackground(new Color(66, 133, 244)); // Color original
-                boton.setBorder(BorderFactory.createLineBorder(new Color(66, 133, 244), 2)); // Regresar al borde original
+                boton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             }
         });
 
@@ -144,7 +140,7 @@ public class pagprincipal extends JFrame {
     private void mostrarPanelActualizarUsuario() {
         panelBotones.setVisible(false);
         panelContenido.removeAll();
-        panelContenido.add(new Actualizar_Usuario(this), BorderLayout.CENTER); // Llamar a la clase Actualizar_Usuario
+        panelContenido.add(new Actualizar_Usuario(this), BorderLayout.CENTER);
         revalidate();
         repaint();
     }
