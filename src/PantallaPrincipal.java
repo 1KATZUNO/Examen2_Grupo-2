@@ -48,7 +48,7 @@ public class PantallaPrincipal extends JFrame {
 		BotonIngresar.setToolTipText("Insertar");
 		BotonIngresar.setFocusable(false);
 		BotonIngresar.setBackground(new Color(0, 0, 0));
-		BotonIngresar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/iconos/icons8-crear-20.png")));
+		BotonIngresar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/icons/icons8-crear-20.png")));
 		BotonIngresar.setBounds(10, 10, 40, 40);
 		PanelMenu.add(BotonIngresar);
 		
@@ -63,7 +63,7 @@ public class PantallaPrincipal extends JFrame {
 			}
 		});
 		BotonConsultar.setToolTipText("Consultar");
-		BotonConsultar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/iconos/icons8-buscar-20 (1).png")));
+		BotonConsultar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/icons/icons8-buscar-20 (1).png")));
 		BotonConsultar.setFocusable(false);
 		BotonConsultar.setBackground(Color.BLACK);
 		BotonConsultar.setBounds(10, 60, 40, 40);
@@ -80,7 +80,7 @@ public class PantallaPrincipal extends JFrame {
 			}
 		});
 		BotonActualizar.setToolTipText("Actualizar");
-		BotonActualizar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/iconos/icons8-actualizar-20.png")));
+		BotonActualizar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/icons/icons8-actualizar-20.png")));
 		BotonActualizar.setFocusable(false);
 		BotonActualizar.setBackground(Color.BLACK);
 		BotonActualizar.setBounds(10, 110, 40, 40);
@@ -97,7 +97,7 @@ public class PantallaPrincipal extends JFrame {
 			}
 		});
 		BotonEliminar.setToolTipText("Eliminar");
-		BotonEliminar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/iconos/icons8-eliminar-20 (1).png")));
+		BotonEliminar.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/icons/icons8-eliminar-20 (1).png")));
 		BotonEliminar.setFocusable(false);
 		BotonEliminar.setBackground(Color.BLACK);
 		BotonEliminar.setBounds(10, 160, 40, 40);
@@ -116,7 +116,7 @@ public class PantallaPrincipal extends JFrame {
 			}
 		});
 		BotonInstruccionnes.setToolTipText("Instrucciones");
-		BotonInstruccionnes.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/iconos/icons8-acerca-de-20.png")));
+		BotonInstruccionnes.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/icons/icons8-acerca-de-20.png")));
 		BotonInstruccionnes.setFocusable(false);
 		BotonInstruccionnes.setBackground(Color.BLACK);
 		BotonInstruccionnes.setBounds(10, 210, 40, 40);
@@ -156,7 +156,7 @@ PantallaPrincipal z = new PantallaPrincipal();
 			}
 		});
 		BotonSalirAplicacion.setToolTipText("Cerrar Programa");
-		BotonSalirAplicacion.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/iconos/icons8-eliminar-20 (2).png")));
+		BotonSalirAplicacion.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/icons/icons8-eliminar-20 (2).png")));
 		BotonSalirAplicacion.setFocusable(false);
 		BotonSalirAplicacion.setBackground(Color.BLACK);
 		BotonSalirAplicacion.setBounds(10, 456, 40, 40);
@@ -173,7 +173,7 @@ PantallaPrincipal z = new PantallaPrincipal();
 			}
 		});
 		BotonCerrarSesion.setToolTipText("Cerrar Sesion");
-		BotonCerrarSesion.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/iconos/icons8-cerrar-sesión-20.png")));
+		BotonCerrarSesion.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/icons/icons8-cerrar-sesión-20.png")));
 		BotonCerrarSesion.setFocusable(false);
 		BotonCerrarSesion.setBackground(Color.BLACK);
 		BotonCerrarSesion.setBounds(10, 406, 40, 40);
@@ -186,7 +186,7 @@ PantallaPrincipal z = new PantallaPrincipal();
 		PanelPrincipal.setLayout(null);
 		
 		JLabel Fondo1 = new JLabel("");
-		Fondo1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/imagenes/file (39).png")));
+		Fondo1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/img/file (39).png")));
 		Fondo1.setBackground(new Color(0, 0, 0));
 		Fondo1.setBounds(0, 0, 886, 563);
 		PanelPrincipal.add(Fondo1);
