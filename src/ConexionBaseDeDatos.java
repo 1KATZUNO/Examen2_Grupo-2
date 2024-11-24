@@ -7,7 +7,7 @@ public class ConexionBaseDeDatos {
     // Datos de conexión
     private static final String URL = "jdbc:mysql://localhost:3306/github"; // URL de la base de datos
     private static final String USER = "root"; // Usuario
-    private static final String PASSWORD = "2207"; // Contraseña
+    private static final String PASSWORD = "josueProgramacion2"; // Contraseña
 
     /**
      * Método para obtener una conexión a la base de datos.
