@@ -10,6 +10,7 @@ public class Actualizar_Usuario extends JPanel {
     private JTextField txtLoginNuevo, txtPasswordNuevo, txtFechaCreacionNuevo;
     private Image fondoImagen; 
 
+    @SuppressWarnings("unused")
     public Actualizar_Usuario(pagprincipal parentFrame) {
         setLayout(new GridBagLayout());
         setOpaque(true);  

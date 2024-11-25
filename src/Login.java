@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,7 @@ public class Login extends JFrame {
        panelConFondo.setLayout(new GridBagLayout());
        this.campoUsuario = new JTextField(20);
        this.campoContraseña = new JPasswordField(20);
-       this.btnIniciarSesion = new JButton("Iniciar Sesi\u00f3n");
+       this.btnIniciarSesion = new JButton("");
        this.lblMensaje = new JLabel("", 0);
        this.campoUsuario.setFont(this.campoUsuario.getFont().deriveFont(18.0F));
        this.campoContraseña.setFont(this.campoContraseña.getFont().deriveFont(18.0F));
@@ -69,6 +70,7 @@ public class Login extends JFrame {
        panelConFondo.add(this.lblMensaje, gbc);
        this.add(panelConFondo);
        this.add(panelConFondo);
+       btnIniciarSesion.setIcon(redimensionarIcono("src/icons/icono_login2.png", 60, 60));
        btnIniciarSesion.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -94,7 +96,7 @@ public class Login extends JFrame {
 
                 try (ResultSet rs = stmt.executeQuery()) {
                     if (rs.next()) {
-                        isValid = true; // Se encontró un usuario válido
+                        isValid = true; 
                     }
                 }
             }
@@ -104,5 +106,10 @@ public class Login extends JFrame {
         }
 
         return isValid;
+    }
+    private ImageIcon redimensionarIcono(String ruta, int ancho, int alto) {
+        ImageIcon iconoOriginal = new ImageIcon(ruta);
+        Image imagenRedimensionada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+        return new ImageIcon(imagenRedimensionada);
     }
 }

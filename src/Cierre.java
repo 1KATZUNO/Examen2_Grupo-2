@@ -48,7 +48,7 @@ public class Cierre extends JFrame {
 		
 		JLabel Creditos = new JLabel("");
 		Creditos.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		Creditos.setIcon(new ImageIcon(Cierre.class.getResource("/imagenes/Sin título ‑ Made with FlexClip (1).gif")));
+		Creditos.setIcon(new ImageIcon(Cierre.class.getResource("/img/Sin título ‑ Made with FlexClip (1).gif")));
 		Creditos.setBounds(0, 0, 850, 473);
 		PanelCreditos.add(Creditos);
 	}

@@ -1,10 +1,10 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.sql.*;
+import javax.swing.*;
 
 public class Eliminar_Usuario extends JPanel {
 
+    @SuppressWarnings("unused")
     public Eliminar_Usuario(pagprincipal parentFrame) {
         // ----> Usar ImagenPanel como fondo
         ImagenPanel fondo = new ImagenPanel("src/img/fondo_Eliminar.jpg");
