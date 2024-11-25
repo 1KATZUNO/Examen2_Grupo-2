@@ -6,7 +6,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultarPorIdPanel extends ImagenPanel {
 
-    public ConsultarPorIdPanel() {
+    @SuppressWarnings("unused")
+    public ConsultarPorIdPanel(pagprincipal parentFrame) {
         // Ruta relativa de  imagen de fondo
         super("src/img/nature2.jpg");
 
@@ -95,30 +96,15 @@ public class ConsultarPorIdPanel extends ImagenPanel {
             }
         });
 
-        // Acción al presionar el botón "Volver"
-     // Acción al presionar el botón "Volver"
-btnVolver.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Limpiar la tabla antes de volver
-        limpiarTabla(tablaUsuario);
-
-        // Obtener el JFrame y verificar si es una instancia de pagprincipal
-        JFrame principalFrame = (JFrame) SwingUtilities.getWindowAncestor(ConsultarPorIdPanel.this);
-        if (principalFrame instanceof pagprincipal) {
-            pagprincipal pagPrincipalFrame = (pagprincipal) principalFrame;
-
-            // Eliminar el contenido de la ventana de consulta y volver a mostrar los botones de la ventana principal
-            pagPrincipalFrame.getPanelBotones().setVisible(true); // Hacer visibles los botones
-            pagPrincipalFrame.panelContenido.removeAll(); // Eliminar cualquier panel cargado previamente
-            pagPrincipalFrame.revalidate();
-            pagPrincipalFrame.repaint();
-        } else {
-            JOptionPane.showMessageDialog(ConsultarPorIdPanel.this, "Error al volver al panel principal.");
-        }
-    }
-});
-
+        //  ----> Acción al presionar el botón "Volver"
+        btnVolver.addActionListener(e -> {
+            parentFrame.getPanelBotones().setVisible(true); // Mostrar botones principales
+            parentFrame.panelContenido.removeAll(); // Limpiar el contenido
+            parentFrame.panelContenido.add(new ImagenPanel("src/img/land.jpg")); // Restaurar el fondo del menú principal
+            parentFrame.revalidate();
+            parentFrame.repaint();
+        });
+    
     }
 
     private void consultarUsuarioPorId(int idUsuario, JTable tablaUsuario) throws ClassNotFoundException {
@@ -177,12 +163,6 @@ btnVolver.addActionListener(new ActionListener() {
                 JOptionPane.showMessageDialog(this, "Error al cerrar la conexión: " + ex.getMessage());
             }
         }
-    }
-
-    private void limpiarTabla(JTable tablaUsuario) {
-        DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
-        model.setRowCount(0); // Eliminar todas las filas
-        model.setColumnCount(0); // Eliminar todas las columnas
     }
 
     private ImageIcon redimensionarIcono(String ruta, int ancho, int alto) {
