@@ -149,8 +149,5 @@ public class pagprincipal extends JFrame {
     public JPanel getPanelBotones() {
         return panelBotones;
     }
-
-    public static void main(String[] args) {
-        new pagprincipal();
-    }
+    
 }

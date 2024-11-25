@@ -14,7 +14,8 @@ import java.sql.*;
 public class Login extends JFrame {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/github";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Adal1108";
+    private static final String DB_PASSWORD = "josueProgramacion2"; 
+
     private JTextField campoUsuario;
     private JPasswordField campoContraseña;
     private JButton btnIniciarSesion;
@@ -79,6 +80,8 @@ public class Login extends JFrame {
             boolean isValid = validateUser(username, password);
             if (isValid) {
                 JOptionPane.showMessageDialog(panelConFondo, "¡Bienvenido!", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                setVisible(false);
+                new pagprincipal();
             } else {
                 JOptionPane.showMessageDialog(panelConFondo, "Usuario o contraseña inválidos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
