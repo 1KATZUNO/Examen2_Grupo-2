@@ -14,7 +14,7 @@ import java.sql.*;
 public class Login extends JFrame {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/github";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "josueProgramacion2"; 
+    private static final String DB_PASSWORD = "Jkrloz21!!"; 
 
     private JTextField campoUsuario;
     private JPasswordField campoContraseña;
