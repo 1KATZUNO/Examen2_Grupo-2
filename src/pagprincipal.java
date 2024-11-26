@@ -40,6 +40,8 @@ public class pagprincipal extends JFrame {
         JButton btnConsultarPorId = crearBoton("Consultar Usuario ID", "src/icons/consultar_id.png");
         JButton btnEliminarUsuario = crearBoton("Eliminar Usuario", "src/icons/eliminar_id.png");
         JButton btnActualizarUsuario = crearBoton("Actualizar Usuario", "src/icons/actualizar_bd.jpg");
+        JButton btnCierre = crearBoton("Creditos", "src/icons/cierre.png");
+     
 
         // Agregar botones al panel de botones
         panelBotones.add(btnConsultarUsuarios, gbc);
@@ -52,13 +54,20 @@ public class pagprincipal extends JFrame {
         gbc.gridy++;
         panelBotones.add(btnActualizarUsuario, gbc);
 
+
+            gbc.gridy++;
+        panelBotones.add(btnCierre, gbc);
+        gbc.gridy++;
+     
+
         // Configuración de acciones para los botones
         btnConsultarUsuarios.addActionListener(e -> mostrarPanelConsultarUsuarios());
         btnInsertarUsuario.addActionListener(e -> mostrarPanelInsertarUsuario());
         btnConsultarPorId.addActionListener(e -> mostrarPanelConsultarPorId());
         btnEliminarUsuario.addActionListener(e -> mostrarPanelEliminarUsuario());
         btnActualizarUsuario.addActionListener(e -> mostrarPanelActualizarUsuario());
-
+        btnCierre.addActionListener(e -> mostrarPanelCierre());
+       
         // Configuración de la ventana principal
         panelBotones.setBounds(250, 100, 300, 400); // Ajustar altura para incluir el nuevo botón
         panelContenido.setBounds(0, 0, 800, 500); // El fondo cubre toda la ventana
@@ -146,6 +155,14 @@ public class pagprincipal extends JFrame {
         repaint();
     }
 
+
+    private void mostrarPanelCierre() {
+        Cierre cierre = new Cierre(); // Asume que la clase Cierre extiende JFrame o tiene su propia GUI
+        cierre.setVisible(true);
+        cierre.setLocationRelativeTo(this);
+        this.dispose(); // Cierra la ventana actual si es necesario
+    }
+    
     public JPanel getPanelBotones() {
         return panelBotones;
     }
