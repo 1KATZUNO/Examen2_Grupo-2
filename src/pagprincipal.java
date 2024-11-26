@@ -4,7 +4,7 @@ import javax.swing.*;
 //import javax.swing.border.Border;
 
 public class pagprincipal extends JFrame {
-    pagprincipal Carlitos = new pagprincipal();
+
 
 
     private JPanel panelBotones; // Panel para los botones
