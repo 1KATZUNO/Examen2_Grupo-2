@@ -9,7 +9,8 @@ public class ConsultarTodosPanel extends ImagenPanel {
 
     private JTable tablaUsuarios;
 
-    public ConsultarTodosPanel(JFrame principalFrame) {
+    @SuppressWarnings("unused")
+    public ConsultarTodosPanel(pagprincipal parentFrame) {
         // Ruta relativa de imagen
         super("src/img/nature.jpg");
 
@@ -90,28 +91,14 @@ public class ConsultarTodosPanel extends ImagenPanel {
                 }
             }
         }); 
-        // Acción al presionar el botón "Volver"
-     // Acción al presionar el botón "Volver"
-btnVolver.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Limpiar la tabla antes de volver
-        limpiarTabla();
-
-        // Volver a la ventana principal
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ConsultarTodosPanel.this);
-        if (frame instanceof pagprincipal) {
-            pagprincipal pagPrincipalFrame = (pagprincipal) frame;
-
-            // Eliminar el panel de consulta y mostrar el panel principal (con los botones)
-            pagPrincipalFrame.getPanelBotones().setVisible(true);  // Hacer visibles los botones de nuevo
-            pagPrincipalFrame.panelContenido.removeAll(); // Eliminar cualquier panel que esté cargado
-            pagPrincipalFrame.revalidate();
-            pagPrincipalFrame.repaint();
-        } else {
-            JOptionPane.showMessageDialog(ConsultarTodosPanel.this, "Error al volver al panel principal.");
-        }
-    }
+      
+//  ----> Acción al presionar el botón "Volver"
+btnVolver.addActionListener(e -> {
+    parentFrame.getPanelBotones().setVisible(true); // Mostrar botones principales
+    parentFrame.panelContenido.removeAll(); // Limpiar el contenido
+    parentFrame.panelContenido.add(new ImagenPanel("src/img/land.jpg")); // Restaurar el fondo del menú principal
+    parentFrame.revalidate();
+    parentFrame.repaint();
 });
 
         
@@ -123,7 +110,7 @@ btnVolver.addActionListener(new ActionListener() {
         ResultSet rs = null;
 
         try {
-            limpiarTabla();
+            
 
             conn = ConexionBaseDeDatos.obtenerConexion();
             System.out.println("Conexión establecida: " + (conn != null));
@@ -170,13 +157,6 @@ btnVolver.addActionListener(new ActionListener() {
         }
     }
 
-    private void limpiarTabla() {
-        DefaultTableModel model = (DefaultTableModel) tablaUsuarios.getModel();
-        model.setRowCount(0);
-
-        for (int i = model.getColumnCount() - 1; i >= 0; i--) {
-            model.setColumnCount(0);
-        }
-    }
+  
 }
         

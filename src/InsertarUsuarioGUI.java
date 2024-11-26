@@ -170,9 +170,9 @@ public class InsertarUsuarioGUI extends JFrame {
         String clave = new String(txtClave.getPassword());
         String fechaCreacion = txtFechaCreacion.getText();
 
-        String url = "jdbc:mysql://localhost:3306/MiBaseDeDatos";
+        String url = "jdbc:mysql://localhost:3306/github";
         String user = "root";
-        String password = "tu_contraseña";
+        String password = "Jkrloz21!!";
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             String procedimiento = "{CALL InsertarUsuario(?, ?, ?, ?, ?, ?, ?)}";

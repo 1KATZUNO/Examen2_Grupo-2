@@ -125,7 +125,7 @@ public class pagprincipal extends JFrame {
     private void mostrarPanelConsultarPorId() {
         panelBotones.setVisible(false);
         panelContenido.removeAll();
-        panelContenido.add(new ConsultarPorIdPanel(), BorderLayout.CENTER);
+        panelContenido.add(new ConsultarPorIdPanel(this), BorderLayout.CENTER);
         revalidate();
         repaint();
     }
