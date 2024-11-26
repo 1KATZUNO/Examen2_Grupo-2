@@ -4,6 +4,8 @@ import javax.swing.*;
 //import javax.swing.border.Border;
 
 public class pagprincipal extends JFrame {
+    pagprincipal Carlitos = new pagprincipal();
+
 
     private JPanel panelBotones; // Panel para los botones
     JPanel panelContenido; // Panel dinámico para cambiar contenido
@@ -149,5 +151,6 @@ public class pagprincipal extends JFrame {
     public JPanel getPanelBotones() {
         return panelBotones;
     }
+    
     
 }
